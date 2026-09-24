@@ -1,6 +1,6 @@
 # rm-for-fool 🗑️
 
-[![CI](https://github.com/kjakx/rm-for-fool/actions/workflows/ci.yml/badge.svg)](https://github.com/kjakx/rm-for-fool/actions/workflows/ci.yml)
+[![CI](https://github.com/kjakx/rm-for-fool/actions/workflows/rust.yml/badge.svg)](https://github.com/kjakx/rm-for-fool/actions/workflows/rust.yml)
 [![Rust Version](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
 
