@@ -14,7 +14,9 @@ use std::path::Path;
 #[cfg(unix)]
 pub(crate) fn move_special_file(src: &Path, dst: &Path, meta: &Metadata) -> Result<()> {
     use std::os::unix::ffi::OsStrExt;
-    use std::os::unix::fs::{MetadataExt, PermissionsExt};
+    #[cfg(target_os = "linux")]
+    use std::os::unix::fs::MetadataExt;
+    use std::os::unix::fs::PermissionsExt;
 
     let mode = meta.permissions().mode();
     let kind = mode & 0o170_000;
@@ -26,7 +28,9 @@ pub(crate) fn move_special_file(src: &Path, dst: &Path, meta: &Metadata) -> Resu
     match kind {
         0o010_000 => {
             /* S_IFIFO */
-            let ret = unsafe { libc::mkfifo(c_path.as_ptr() as *const _, mode & 0o7777) };
+            let ret = unsafe {
+                libc::mkfifo(c_path.as_ptr() as *const _, (mode & 0o7777) as libc::mode_t)
+            };
             if ret != 0 {
                 return Err(io::Error::last_os_error())
                     .with_context(|| format!("failed to create FIFO at '{}'", dst.display()));
