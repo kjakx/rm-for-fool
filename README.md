@@ -8,6 +8,9 @@
 
 It provides a transparent safety net for accidental file deletions while preserving metadata, directory hierarchies, hard links, extended attributes, and file structures.
 
+> **Disclaimer (Important)**: I made this tool for myself; the "fool" in the name of this tool refers to me, not you.
+> Smart people like you probably don't need this tool, but I am not responsible for any damage or loss caused by accidentally using it.
+
 ---
 
 ## ✨ Key Features
@@ -76,13 +79,15 @@ rm-for-fool -I *.log
 rm-for-fool -d empty_dir/
 ```
 
-### Setting an Alias
+### Setting an Alias (Unix/Linux)
 
 To protect yourself from unintended data loss, set an alias in your shell configuration (`~/.bashrc`, `~/.zshrc`, or `config.fish`):
 
 ```bash
 alias rm="rm-for-fool"
 ```
+
+> **Note**: After that, please make sure to reload the configuration file or restart your shell. Don't make the same mistake I did!
 
 To invoke the original system `rm` when needed, prepend a backslash:
 ```bash
