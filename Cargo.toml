@@ -1,0 +1,25 @@
+[package]
+name = "rm-for-fool"
+version = "0.1.0"
+edition = "2024"
+description = "A safe rm replacement that moves files to ~/.Trash/<UUID>/ instead of deleting them"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+keywords = ["rm", "trash", "cli", "safety", "coreutils"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+# v4 uses getrandom directly; the legacy "fast-rng" feature (extra rand dep) is not needed
+uuid = { version = "1.8", features = ["v4"] }
+dirs = "5.0"
+filetime = "0.2"
+walkdir = "2.5"
+anyhow = "1.0"
+
+[target.'cfg(unix)'.dependencies]
+xattr = "1.3"
+libc = "0.2"
+
+[dev-dependencies]
+tempfile = "3.10"
